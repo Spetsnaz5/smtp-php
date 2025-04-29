@@ -19,8 +19,8 @@ try {
     $mail->isSMTP();
     $mail->Host       = $_ENV['SMTP_HOST'];
     $mail->SMTPAuth   = true;
-    $mail->Username   = $_ENV['SMTP_USERNAME']; 
-    $mail->Password   = $_ENV['SMTP_PASSWORD'];
+    $mail->Username   = $_ENV['SMTP_USERNAME'];
+    $mail->Password   = $_ENV['SMTP_PASSWORD'];//Gmail 應用程式密碼，不是登入密碼，來源 Google 帳戶 > 安全性 > 應用程式密碼
     $mail->SMTPSecure = 'tls';
     $mail->Port       = 587;
 
@@ -37,6 +37,7 @@ try {
     if (! $mail->send())
         throw new Exception($mail->ErrorInfo);
 
+    echo "寄信成功";
 } catch (Exception $e) {
     echo "寄信失敗: {$e->getMessage()}";
 }
